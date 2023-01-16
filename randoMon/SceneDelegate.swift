@@ -25,18 +25,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window?.makeKeyAndVisible()
     }
     
-    func createPokemonByGenVC() -> UINavigationController {
-        let pokeByGenVC = PokemonByGenVC()
-        pokeByGenVC.title = "Generations"
-        pokeByGenVC.tabBarItem = UITabBarItem(title: "Gen", image: .checkmark, tag: 0)
-        return UINavigationController(rootViewController: pokeByGenVC)
-    }
-    
     func createPokemonByTypeVC() -> UINavigationController {
         let pokeByTypeVC = PokemonByTypeVC()
         pokeByTypeVC.title = "Types"
-        pokeByTypeVC.tabBarItem = UITabBarItem(title: "Type", image: .checkmark, tag: 1)
+        pokeByTypeVC.tabBarItem = UITabBarItem(title: "Type", image: .checkmark, tag: 0)
         return UINavigationController(rootViewController: pokeByTypeVC)
+    }
+    
+    func createPokemonByGenVC() -> UINavigationController {
+        let pokeByGenVC = PokemonByGenVC()
+        pokeByGenVC.title = "Generations"
+        pokeByGenVC.tabBarItem = UITabBarItem(title: "Gen", image: .checkmark, tag: 1)
+        return UINavigationController(rootViewController: pokeByGenVC)
     }
     
     func createFavPokemonVC() -> UINavigationController {
