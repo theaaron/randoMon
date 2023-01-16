@@ -14,6 +14,7 @@
 		93A8A5BF2974F78700F8D3BC /* PokemonByGenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5BE2974F78700F8D3BC /* PokemonByGenVC.swift */; };
 		93A8A5C12974F79800F8D3BC /* PokemonByTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5C02974F79800F8D3BC /* PokemonByTypeVC.swift */; };
 		93A8A5C32974F7B000F8D3BC /* FavPokemonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5C22974F7B000F8D3BC /* FavPokemonVC.swift */; };
+		93A8A5C62974F8F600F8D3BC /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5C52974F8F600F8D3BC /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		93A8A5BE2974F78700F8D3BC /* PokemonByGenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonByGenVC.swift; sourceTree = "<group>"; };
 		93A8A5C02974F79800F8D3BC /* PokemonByTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonByTypeVC.swift; sourceTree = "<group>"; };
 		93A8A5C22974F7B000F8D3BC /* FavPokemonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavPokemonVC.swift; sourceTree = "<group>"; };
+		93A8A5C52974F8F600F8D3BC /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		93A8A59E2974E9AF00F8D3BC = {
 			isa = PBXGroup;
 			children = (
+				93A8A5C52974F8F600F8D3BC /* Pokemon.swift */,
 				93A8A5A92974E9B000F8D3BC /* randoMon */,
 				93A8A5A82974E9B000F8D3BC /* Products */,
 			);
@@ -153,6 +156,7 @@
 				93A8A5AD2974E9B000F8D3BC /* SceneDelegate.swift in Sources */,
 				93A8A5C32974F7B000F8D3BC /* FavPokemonVC.swift in Sources */,
 				93A8A5C12974F79800F8D3BC /* PokemonByTypeVC.swift in Sources */,
+				93A8A5C62974F8F600F8D3BC /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
