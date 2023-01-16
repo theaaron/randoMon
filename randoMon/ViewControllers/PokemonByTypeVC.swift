@@ -16,6 +16,7 @@ class PokemonByTypeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         getAllTypes()
+        print(allTypes)
         configCollectionView()
         
     }
@@ -29,6 +30,7 @@ class PokemonByTypeVC: UIViewController {
                self.allTypes.append(contentsOf: pokeTypesDict.results)
                self.allTypes.popLast()
                self.allTypes.popLast()
+               print(self.allTypes)
 
                DispatchQueue.main.async {
                    self.typeCollectionView.reloadData()
@@ -65,7 +67,7 @@ class PokemonByTypeVC: UIViewController {
        }
 }
 
-extension PokemonByGenVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allTypes.count
     }
