@@ -15,7 +15,7 @@ struct NetworkingManager {
     let typePokemon = "https://pokeapi.co/api/v2/type/"
     
     
-    func getPokemon(baseUrl: String, completed: @escaping (PokemonByTypeDict?, String?) -> Void) {
+    func getPokemonFromTypesList(baseUrl: String, completed: @escaping (PokemonByTypeDict?, String?) -> Void) {
         guard let url = URL(string: baseUrl) else {
             print("problem with the url")
             return
@@ -78,6 +78,41 @@ struct NetworkingManager {
         }
         
         task.resume()
+    }
+    
+    
+    
+    func getPokemonObject(pokemonUrl: String, completed: @escaping (Pokemon?, String?) -> Void) {
+        guard let url = URL(string: pokemonUrl) else {
+            print("could not make url")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let _ = error {
+                completed(nil, String(describing: error))
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(nil, "did not receive 200")
+                return
+            }
+            
+            guard let data = data else {
+                completed(nil, "no data")
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedPokemon = try decoder.decode(Pokemon.self, from: data)
+                completed(decodedPokemon, nil)
+            } catch {
+                return
+            }
+            
+        }
+        task.resume()
+        
     }
     
 }
