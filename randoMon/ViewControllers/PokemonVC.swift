@@ -10,23 +10,42 @@ import UIKit
 class PokemonVC: UIViewController {
     
     let pokemonNameLabel = UILabel()
+    let pokemonImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubViews()
         setupNameLabel()
+        setupPokemonImageView()
     }
     
     func addSubViews() {
         view.addSubview(pokemonNameLabel)
+        view.addSubview(pokemonImageView)
     }
     
     func setupNameLabel() {
         pokemonNameLabel.textAlignment = .center
+        pokemonNameLabel.font = .systemFont(ofSize: 30, weight: .semibold)
         pokemonNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        pokemonNameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0).isActive = true
-        pokemonNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
+        pokemonNameLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 40).isActive = true
+        pokemonNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        pokemonNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        
+    }
+    
+    func setupPokemonImageView() {
+        pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
+        pokemonImageView.backgroundColor = .systemPink
+        
+        pokemonImageView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        pokemonImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        pokemonImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+//        pokemonImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+//        pokemonImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        
         
     }
     
