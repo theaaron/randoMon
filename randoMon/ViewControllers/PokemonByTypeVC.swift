@@ -89,7 +89,7 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
     
     
     func getRandomPokemon(typeUrl: String, destVC: PokemonVC) {
-        NetworkingManager.shared.getPokemon(baseUrl: typeUrl) { pokeByTypeDict, errorMsg in
+        NetworkingManager.shared.getPokemonFromTypesList(baseUrl: typeUrl) { pokeByTypeDict, errorMsg in
             guard let pokeByTypeDict = pokeByTypeDict else {
                 print(errorMsg ?? "error")
                 return
