@@ -15,3 +15,5 @@ struct AllPokemonTypes: Codable {
     let name: String
     let url: String
 }
+
+

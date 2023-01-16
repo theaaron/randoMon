@@ -68,14 +68,15 @@
 		93A8A5A92974E9B000F8D3BC /* randoMon */ = {
 			isa = PBXGroup;
 			children = (
+				93A8A5C42974F7BA00F8D3BC /* ViewControllers */,
+				93A8A5CB2974F99300F8D3BC /* Model */,
+				93A8A5D02974FCDE00F8D3BC /* Custom Views */,
+				93A8A5CC2974F9E200F8D3BC /* NetworkingManager.swift */,
 				93A8A5AA2974E9B000F8D3BC /* AppDelegate.swift */,
 				93A8A5AC2974E9B000F8D3BC /* SceneDelegate.swift */,
 				93A8A5B32974E9B000F8D3BC /* Assets.xcassets */,
 				93A8A5B52974E9B000F8D3BC /* LaunchScreen.storyboard */,
 				93A8A5B82974E9B000F8D3BC /* Info.plist */,
-				93A8A5CB2974F99300F8D3BC /* Model */,
-				93A8A5C42974F7BA00F8D3BC /* ViewControllers */,
-				93A8A5CC2974F9E200F8D3BC /* NetworkingManager.swift */,
 			);
 			path = randoMon;
 			sourceTree = "<group>";
@@ -99,6 +100,13 @@
 				93A8A5C92974F96400F8D3BC /* PokemonByTypeDict.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		93A8A5D02974FCDE00F8D3BC /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

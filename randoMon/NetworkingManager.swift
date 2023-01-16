@@ -47,4 +47,36 @@ struct NetworkingManager {
         task.resume()
     }
     
+    func getTypes(completed: @escaping (PokemonTypesDict?, String?) -> Void) {
+        guard let url = URL(string: typePokemon) else {
+            print("problem with the url")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let _ = error {
+                completed(nil, String(describing: error))
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(nil, "not 200")
+                return
+            }
+            guard let data = data else {
+                completed(nil, "there was no data")
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let decodedTypes = try decoder.decode(PokemonTypesDict.self, from: data)
+            } catch {
+                completed(nil, "unable to decode the JSON")
+                
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
 }
