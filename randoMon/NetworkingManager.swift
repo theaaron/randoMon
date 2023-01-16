@@ -69,6 +69,7 @@ struct NetworkingManager {
             do {
                 let decoder = JSONDecoder()
                 let decodedTypes = try decoder.decode(PokemonTypesDict.self, from: data)
+                completed(decodedTypes, nil)
             } catch {
                 completed(nil, "unable to decode the JSON")
                 
