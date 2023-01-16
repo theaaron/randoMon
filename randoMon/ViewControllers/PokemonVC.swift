@@ -8,11 +8,26 @@
 import UIKit
 
 class PokemonVC: UIViewController {
+    
+    let pokemonNameLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemBackground
+        addSubViews()
+        setupNameLabel()
+    }
+    
+    func addSubViews() {
+        view.addSubview(pokemonNameLabel)
+    }
+    
+    func setupNameLabel() {
+        pokemonNameLabel.textAlignment = .center
+        pokemonNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        pokemonNameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0).isActive = true
+        pokemonNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive = true
+        
     }
     
 
