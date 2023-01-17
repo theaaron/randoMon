@@ -20,6 +20,7 @@
 		93A8A5CD2974F9E200F8D3BC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5CC2974F9E200F8D3BC /* NetworkingManager.swift */; };
 		93A8A5CF2974FB2600F8D3BC /* PokemonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5CE2974FB2600F8D3BC /* PokemonVC.swift */; };
 		93A8A5D2297505CC00F8D3BC /* PokeTypesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5D1297505CC00F8D3BC /* PokeTypesCell.swift */; };
+		93A8A5D52975F2A900F8D3BC /* UIImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5D42975F2A900F8D3BC /* UIImageViewExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		93A8A5CC2974F9E200F8D3BC /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		93A8A5CE2974FB2600F8D3BC /* PokemonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonVC.swift; sourceTree = "<group>"; };
 		93A8A5D1297505CC00F8D3BC /* PokeTypesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeTypesCell.swift; sourceTree = "<group>"; };
+		93A8A5D42975F2A900F8D3BC /* UIImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		93A8A5A92974E9B000F8D3BC /* randoMon */ = {
 			isa = PBXGroup;
 			children = (
+				93A8A5D32975F24300F8D3BC /* Extensions */,
 				93A8A5C42974F7BA00F8D3BC /* ViewControllers */,
 				93A8A5CB2974F99300F8D3BC /* Model */,
 				93A8A5D02974FCDE00F8D3BC /* Custom Views */,
@@ -110,6 +113,14 @@
 				93A8A5D1297505CC00F8D3BC /* PokeTypesCell.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		93A8A5D32975F24300F8D3BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				93A8A5D42975F2A900F8D3BC /* UIImageViewExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +197,7 @@
 				93A8A5BF2974F78700F8D3BC /* PokemonByTypeVC.swift in Sources */,
 				93A8A5CF2974FB2600F8D3BC /* PokemonVC.swift in Sources */,
 				93A8A5AB2974E9B000F8D3BC /* AppDelegate.swift in Sources */,
+				93A8A5D52975F2A900F8D3BC /* UIImageViewExt.swift in Sources */,
 				93A8A5AD2974E9B000F8D3BC /* SceneDelegate.swift in Sources */,
 				93A8A5CA2974F96400F8D3BC /* PokemonByTypeDict.swift in Sources */,
 				93A8A5D2297505CC00F8D3BC /* PokeTypesCell.swift in Sources */,
