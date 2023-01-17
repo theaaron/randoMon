@@ -11,6 +11,7 @@ class PokemonByTypeVC: UIViewController {
 
     var typeCollectionView: UICollectionView!
     var allTypes: [AllPokemonTypes] = []
+    let missingNo: Pokemon = Pokemon(name: "missingno", height: 76, weight: 55, sprites: Sprites(front_default: "", front_shiny: ""), types: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,6 @@ class PokemonByTypeVC: UIViewController {
                self.allTypes.append(contentsOf: pokeTypesDict.results)
                self.allTypes.popLast()
                self.allTypes.popLast()
-               print(self.allTypes)
-
                DispatchQueue.main.async {
                    self.typeCollectionView.reloadData()
                }
@@ -84,21 +83,23 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
         let newUrl = allTypes[indexPath.row].url
         
         getRandomPokemon(typeUrl: newUrl, destVC: destVC)
-        present(destVC, animated: true)
+        
+        
     }
     
     
     func getRandomPokemon(typeUrl: String, destVC: PokemonVC) {
-        NetworkingManager.shared.getPokemonFromTypesList(baseUrl: typeUrl) { pokeByTypeDict, errorMsg in
-            guard let pokeByTypeDict = pokeByTypeDict else {
-                print(errorMsg ?? "error")
-                return
-            }
-            let randomPoke = pokeByTypeDict.pokemon.randomElement()?.pokemon
-            DispatchQueue.main.async {
-                destVC.pokemonNameLabel.text = randomPoke?.name ?? "missingno"
-            }
+        Task {
+            let pkmn = await NetworkingManager.shared.getPokemonOfType(typeUrl: typeUrl)
+            let randomPkmn = pkmn.randomElement()?.pokemon
+            let pokeObjUrl = randomPkmn?.url
+            print(pokeObjUrl ?? "")
             
+            let pkmnObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokeObjUrl ?? "")
+            destVC.pokemonObj = pkmnObj
+            DispatchQueue.main.async {
+                self.present(destVC, animated: true)
+            }
         }
     }
     
