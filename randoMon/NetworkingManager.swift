@@ -43,9 +43,37 @@ struct NetworkingManager {
                 completed(nil, "Unable to decode JSON")
             }
         }
-        
         task.resume()
     }
+    
+    func getPokemonOfType(typeUrl: String) async -> [PokemonDict] {
+        let url = URL(string: typeUrl)
+        guard let url = url else {
+            return []
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let pkmn = try JSONDecoder().decode(PokemonByTypeDict.self, from: data)
+            return pkmn.pokemon
+        } catch {
+            return []
+        }
+    }
+    
+    func getPokemonObj(pkmnUrl: String) async -> Pokemon? {
+        let url = URL(string: pkmnUrl)
+        guard let url = url else {
+            return nil
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let pkmnObj = try JSONDecoder().decode(Pokemon.self, from: data)
+            return pkmnObj
+        } catch {
+            return nil
+        }
+    }
+    
     
     func getTypes(completed: @escaping (PokemonTypesDict?, String?) -> Void) {
         guard let url = URL(string: typePokemon) else {
@@ -74,9 +102,7 @@ struct NetworkingManager {
                 completed(nil, "unable to decode the JSON")
                 
             }
-            
         }
-        
         task.resume()
     }
     
@@ -84,6 +110,7 @@ struct NetworkingManager {
     
     func getPokemonObject(pokemonUrl: String, completed: @escaping (Pokemon?, String?) -> Void) {
         guard let url = URL(string: pokemonUrl) else {
+            print(pokemonUrl)
             print("could not make url")
             return
         }
@@ -112,7 +139,11 @@ struct NetworkingManager {
             
         }
         task.resume()
+    }
+    
+    func getImageFromUrl(url: String) {
         
     }
+    
     
 }
