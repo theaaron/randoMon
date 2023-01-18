@@ -13,6 +13,7 @@ struct Pokemon: Codable {
     let weight: Int
     let sprites: Sprites
     let types: [Types]
+    let species: PokemonSpeciesDict
 }
 
 struct Sprites: Codable {
