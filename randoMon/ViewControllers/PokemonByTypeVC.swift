@@ -11,7 +11,7 @@ class PokemonByTypeVC: UIViewController {
 
     var typeCollectionView: UICollectionView!
     var allTypes: [AllPokemonTypes] = []
-    let missingNo: Pokemon = Pokemon(name: "missingno", height: 76, weight: 55, sprites: Sprites(front_default: "", front_shiny: ""), types: [])
+    let missingNo: Pokemon = Pokemon(name: "missingno", height: 76, weight: 55, sprites: Sprites(front_default: "", front_shiny: ""), types: [], species: PokemonSpeciesDict(name: "missingno", url: ""))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,7 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
             let pkmn = await NetworkingManager.shared.getPokemonOfType(typeUrl: typeUrl)
             let randomPkmn = pkmn.randomElement()?.pokemon
             let pokeObjUrl = randomPkmn?.url
-            print(pokeObjUrl ?? "")
+            destVC.pokemonUrl = pokeObjUrl ?? ""
             
             let pkmnObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokeObjUrl ?? "")
             destVC.pokemonObj = pkmnObj
