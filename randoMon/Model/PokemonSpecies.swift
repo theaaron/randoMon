@@ -11,3 +11,8 @@ struct PokemonSpeciesDict: Codable {
     let name: String
     let url: String
 }
+
+struct PokemonSpecies: Codable {
+    let name: String
+    let id: Int
+}
