@@ -19,7 +19,6 @@ class PokemonByTypeVC: UIViewController {
         getAllTypes()
         print(allTypes)
         configCollectionView()
-        
     }
     
     func getAllTypes() {
@@ -83,8 +82,6 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
         let newUrl = allTypes[indexPath.row].url
         
         getRandomPokemon(typeUrl: newUrl, destVC: destVC)
-        
-        
     }
     
     
@@ -94,12 +91,7 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
             let randomPkmn = pkmn.randomElement()?.pokemon
             let pokeObjUrl = randomPkmn?.url
             destVC.pokemonUrl = pokeObjUrl ?? ""
-            
-            let pkmnObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokeObjUrl ?? "")
-            destVC.pokemonObj = pkmnObj
-            DispatchQueue.main.async {
-                self.present(destVC, animated: true)
-            }
+            present(destVC, animated: true)
         }
     }
     
