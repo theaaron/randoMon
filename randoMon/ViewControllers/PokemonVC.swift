@@ -9,7 +9,7 @@ import UIKit
 
 class PokemonVC: UIViewController {
     
-    var pokemonObj: Pokemon?
+    var pokemonObj: Pokemon!
     var pokemonUrl = ""
     let pokemonNameLabel = UILabel()
     let pokemonImageView = UIImageView()
@@ -20,12 +20,16 @@ class PokemonVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         addSubViews()
-        DispatchQueue.main.async {
+        setUIWithPokemonObj()
+    }
+    
+    func setUIWithPokemonObj() {
+        Task {
+            pokemonObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokemonUrl)
             self.setupNameLabel()
             self.setupPokemonImageView()
             self.setupPokemonTypesLabel()
         }
-        
     }
     
     func addSubViews() {
@@ -76,16 +80,5 @@ class PokemonVC: UIViewController {
         }
         return typesString
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
