@@ -13,6 +13,7 @@ struct NetworkingManager {
     
     let allPokemon = "https://pokeapi.co/api/v2/pokemon/"
     let typePokemon = "https://pokeapi.co/api/v2/type/"
+    let genPokemon = "https://pokeapi.co/api/v2/generation/"
     
     
     func getPokemonFromTypesList(baseUrl: String, completed: @escaping (PokemonByTypeDict?, String?) -> Void) {
@@ -55,6 +56,21 @@ struct NetworkingManager {
             let (data, _) = try await URLSession.shared.data(from: url)
             let pkmn = try JSONDecoder().decode(PokemonByTypeDict.self, from: data)
             return pkmn.pokemon
+        } catch {
+            return []
+        }
+    }
+    
+    func getPokemonByGen(genNumber: String) async -> [PokemonSpeciesDict] {
+        let url = URL(string: genPokemon + genNumber)
+        guard let url = url else {
+            print("invalid url")
+            return []
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let pokemonSpeciesDictArr = try JSONDecoder().decode(PokemonGenerationDict.self, from: data)
+            return pokemonSpeciesDictArr.pokemon_species
         } catch {
             return []
         }
