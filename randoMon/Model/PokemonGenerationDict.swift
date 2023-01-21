@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct PokemonGenerationDict: Codable {
+    let name: String
+    let pokemon_species: [PokemonSpeciesDict]
+}
