@@ -9,11 +9,13 @@ import UIKit
 
 class PokemonVC: UIViewController {
     
-    var pokemonObj: Pokemon!
+    var pokemonObj: Pokemon?
+    var pokemonSpeciesObj: PokemonSpecies?
     var pokemonUrl = ""
     let pokemonNameLabel = UILabel()
     let pokemonImageView = UIImageView()
     let pokemonTypesLabel = UILabel()
+    let pokemonNumberLabel = UILabel()
     
 
     override func viewDidLoad() {
@@ -26,7 +28,9 @@ class PokemonVC: UIViewController {
     func setUIWithPokemonObj() {
         Task {
             pokemonObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokemonUrl)
+            pokemonSpeciesObj = await NetworkingManager.shared.getPokemonSpecies(url: pokemonObj?.species.url ?? "")
             self.setupNameLabel()
+            self.setupPokeNumberLabel()
             self.setupPokemonImageView()
             self.setupPokemonTypesLabel()
         }
@@ -36,16 +40,7 @@ class PokemonVC: UIViewController {
         view.addSubview(pokemonNameLabel)
         view.addSubview(pokemonImageView)
         view.addSubview(pokemonTypesLabel)
-    }
-    
-    func setupNameLabel() {
-        pokemonNameLabel.text = pokemonObj?.species.name.capitalized
-        pokemonNameLabel.textAlignment = .center
-        pokemonNameLabel.font = .systemFont(ofSize: 30, weight: .semibold)
-        pokemonNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        pokemonNameLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 40).isActive = true
-        pokemonNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-        pokemonNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        view.addSubview(pokemonNumberLabel)
     }
     
     func setupPokemonImageView() {
@@ -60,10 +55,31 @@ class PokemonVC: UIViewController {
         pokemonImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
     }
     
+    func setupNameLabel() {
+        pokemonNameLabel.text = pokemonObj?.species.name.capitalized
+        pokemonNameLabel.textAlignment = .center
+        pokemonNameLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        pokemonNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        pokemonNameLabel.topAnchor.constraint(equalTo: pokemonImageView.bottomAnchor, constant: 10).isActive = true
+        pokemonNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        pokemonNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+    }
+    
+    func setupPokeNumberLabel() {
+        let pokemonNumber: Int = pokemonSpeciesObj?.id ?? 9000
+        pokemonNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        pokemonNumberLabel.text = "Pokémon # \(String(pokemonNumber))"
+        pokemonNumberLabel.font = .systemFont(ofSize: 22, weight: .semibold)
+        pokemonNumberLabel.topAnchor.constraint(equalTo: pokemonNameLabel.bottomAnchor, constant: 8).isActive = true
+        pokemonNumberLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+    }
+    
+
+    
     func setupPokemonTypesLabel() {
         pokemonTypesLabel.translatesAutoresizingMaskIntoConstraints = false
-        pokemonTypesLabel.text = "Types: \(changeTypesToString(typesArr: pokemonObj?.types ?? []))"
-        pokemonTypesLabel.topAnchor.constraint(equalTo: pokemonNameLabel.bottomAnchor, constant: 10).isActive = true
+        pokemonTypesLabel.text = "Type(s): \(changeTypesToString(typesArr: pokemonObj?.types ?? []))"
+        pokemonTypesLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 10).isActive = true
         pokemonTypesLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         
         
