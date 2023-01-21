@@ -63,6 +63,7 @@ struct NetworkingManager {
     func getPokemonObj(pkmnUrl: String) async -> Pokemon? {
         let url = URL(string: pkmnUrl)
         guard let url = url else {
+            print("invalid url")
             return nil
         }
         do {
@@ -70,6 +71,22 @@ struct NetworkingManager {
             let pkmnObj = try JSONDecoder().decode(Pokemon.self, from: data)
             return pkmnObj
         } catch {
+            print("error decoding pokemon: \(error)")
+            return nil
+        }
+    }
+    
+    func getPokemonSpecies(url: String) async -> PokemonSpecies? {
+        guard let pokeUrl = URL(string: url) else {
+            print("invalid url")
+            return nil
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: pokeUrl)
+            let pokeSpecies = try JSONDecoder().decode(PokemonSpecies.self, from: data)
+            return pokeSpecies
+        } catch {
+            print("error creating the PokemonSpecies object")
             return nil
         }
     }
@@ -100,7 +117,6 @@ struct NetworkingManager {
                 completed(decodedTypes, nil)
             } catch {
                 completed(nil, "unable to decode the JSON")
-                
             }
         }
         task.resume()
