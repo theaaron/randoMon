@@ -8,15 +8,15 @@
 import Foundation
 
 struct ListOfGenerations: Codable {
-    let name: String
-    let pokemon_species: [PokemonSpeciesDict]
-}
-
-struct ListOfGenerations: Codable {
     let results: [GenerationResults]
 }
 
 struct GenerationResults: Codable {
     let name: String
     let url: String
+}
+
+struct GenerationInfo: Codable {
+    let id: Int
+    let pokemon_species: [PokemonSpeciesDict]
 }
