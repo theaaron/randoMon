@@ -15,7 +15,7 @@ class PokeTypesCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLabel()
-        backgroundColor = .lightGray
+        backgroundColor = .systemPink
     }
     
     required init?(coder: NSCoder) {
