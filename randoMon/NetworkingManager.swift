@@ -61,6 +61,23 @@ struct NetworkingManager {
         }
     }
     
+    func getAllPokemonGens() async -> [GenerationResults]? {
+        let url = URL(string: genPokemon)
+        guard let url = url else {
+            print("invalid url")
+            return nil
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let allGens = try JSONDecoder().decode(ListOfGenerations.self, from: data)
+            return allGens.results
+        } catch {
+            print("could not decode data for generation list")
+            return []
+        }
+        
+    }
+    
     func getPokemonByGen(genNumber: String) async -> [PokemonSpeciesDict] {
         let url = URL(string: genPokemon + genNumber)
         guard let url = url else {
@@ -69,12 +86,15 @@ struct NetworkingManager {
         }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            let pokemonSpeciesDictArr = try JSONDecoder().decode(PokemonGenerationDict.self, from: data)
-            return pokemonSpeciesDictArr.pokemon_species
+            let genInfo = try JSONDecoder().decode(GenerationInfo.self, from: data)
+            let genPokes = genInfo.pokemon_species
+            return genPokes
         } catch {
             return []
         }
     }
+    
+    
     
     func getPokemonObj(pkmnUrl: String) async -> Pokemon? {
         let url = URL(string: pkmnUrl)
