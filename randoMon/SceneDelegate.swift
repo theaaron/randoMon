@@ -28,14 +28,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createPokemonByTypeVC() -> UINavigationController {
         let pokeByTypeVC = PokemonByTypeVC()
         pokeByTypeVC.title = "Types"
-        pokeByTypeVC.tabBarItem = UITabBarItem(title: "Type", image: .checkmark, tag: 0)
+        let pokeBallIcon = UIImage(named: "pokeball-icon")
+        pokeByTypeVC.tabBarItem = UITabBarItem(title: "Type", image: pokeBallIcon, tag: 0)
         return UINavigationController(rootViewController: pokeByTypeVC)
     }
     
     func createPokemonByGenVC() -> UINavigationController {
         let pokeByGenVC = PokemonByGenVC()
         pokeByGenVC.title = "Generations"
-        pokeByGenVC.tabBarItem = UITabBarItem(title: "Gen", image: .checkmark, tag: 1)
+        let pokeBallIcon = UIImage(named: "pokeball-icon")
+        
+        pokeByGenVC.tabBarItem = UITabBarItem(title: "Gen", image: pokeBallIcon, tag: 1)
         return UINavigationController(rootViewController: pokeByGenVC)
     }
     
