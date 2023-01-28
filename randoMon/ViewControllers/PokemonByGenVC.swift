@@ -18,7 +18,6 @@ class PokemonByGenVC: UIViewController {
         getAllGens()
         setupCollectionView()
         setupGenTableView()
-        print(generations)
     }
     
     func setupCollectionView() {
@@ -43,7 +42,6 @@ class PokemonByGenVC: UIViewController {
         Task {
             let gens = await NetworkingManager.shared.getAllPokemonGens()
             generations.append(contentsOf: gens!)
-            print(generations)
             genCollectionView.reloadData()
         }
     }
@@ -70,7 +68,6 @@ extension PokemonByGenVC: UICollectionViewDelegate, UICollectionViewDataSource {
             let pokeSpec = await NetworkingManager.shared.getPokemonSpecies(url: pokeSpecUrl)
             let pokeUrl = pokeSpec?.varieties[0].pokemon.url
             destVC.pokemonUrl = pokeUrl ?? ""
-            print(destVC.pokemonUrl)
             present(destVC, animated: true)
         }
     }

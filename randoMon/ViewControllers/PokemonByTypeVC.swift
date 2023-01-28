@@ -17,7 +17,6 @@ class PokemonByTypeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         getAllTypes()
-        print(allTypes)
         configCollectionView()
     }
     
