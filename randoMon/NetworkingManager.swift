@@ -5,7 +5,7 @@
 //  Created by aaron on 1/15/23.
 //
 
-import Foundation
+import UIKit
 
 struct NetworkingManager {
     
@@ -193,9 +193,16 @@ struct NetworkingManager {
         task.resume()
     }
     
-    func getImageFromUrl(url: String) {
-        
+    func getPokemonDetailCard(pkmnUrl: String, pkmnSpecUrl: String) async -> PokemonDetailsCard {
+        let pokemonObj = await getPokemonObj(pkmnUrl: pkmnUrl)
+        let pokemonSpecies = await getPokemonSpecies(url: pkmnSpecUrl)
+        return PokemonDetailsCard(name: pokemonObj?.species.name ?? "missingNo",
+                                  number: pokemonSpecies?.id ?? 0,
+                                  types: pokemonObj?.types ?? [],
+                                  frontSprite: pokemonObj?.sprites.front_default ?? "",
+                                  shinyFrontSprite: pokemonObj?.sprites.front_shiny ?? "")
     }
+    
     
     
 }
