@@ -90,6 +90,7 @@ extension PokemonByTypeVC: UICollectionViewDelegate, UICollectionViewDataSource 
             let pkmn = await NetworkingManager.shared.getPokemonOfType(typeUrl: typeUrl)
             let randomPkmn = pkmn.randomElement()?.pokemon
             let pokeObjUrl = randomPkmn?.url
+            
             destVC.pokemonUrl = pokeObjUrl ?? ""
             present(destVC, animated: true)
         }

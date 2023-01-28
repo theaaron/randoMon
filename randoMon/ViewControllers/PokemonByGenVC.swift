@@ -14,6 +14,7 @@ class PokemonByGenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         getAllGens()
         setupCollectionView()
         setupGenTableView()
