@@ -10,6 +10,8 @@ import UIKit
 struct PokemonDetailsCard {
     let name: String
     let number: Int
-    let types: [String]
-    let image: UIImage
+    let types: [Types]
+    let frontSprite: String
+    let shinyFrontSprite: String
+//    let image: UIImage
 }
