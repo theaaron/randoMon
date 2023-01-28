@@ -10,7 +10,7 @@ import UIKit
 class PokemonVC: UIViewController {
     
     var pokemonObj: Pokemon?
-    var pokemonSpeciesObj: PokemonSpecies?
+    var pokemonDetailsCard: PokemonDetailsCard?
     var pokemonUrl = ""
     let pokemonNameLabel = UILabel()
     let pokemonImageView = UIImageView()
@@ -28,7 +28,8 @@ class PokemonVC: UIViewController {
     func setUIWithPokemonObj() {
         Task {
             pokemonObj = await NetworkingManager.shared.getPokemonObj(pkmnUrl: pokemonUrl)
-            pokemonSpeciesObj = await NetworkingManager.shared.getPokemonSpecies(url: pokemonObj?.species.url ?? "")
+            pokemonDetailsCard = await NetworkingManager.shared.getPokemonDetailCard(pkmnUrl: pokemonUrl, pkmnSpecUrl: pokemonObj?.species.url ?? "")
+            
             self.setupNameLabel()
             self.setupPokeNumberLabel()
             self.setupPokemonImageView()
@@ -45,7 +46,7 @@ class PokemonVC: UIViewController {
     
     func setupPokemonImageView() {
         pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
-        if let url = URL(string: pokemonObj?.sprites.front_default ?? "") {
+        if let url = URL(string: pokemonDetailsCard?.shinyFrontSprite ?? "") {
             pokemonImageView.load(url: url)
         }
         
@@ -56,7 +57,7 @@ class PokemonVC: UIViewController {
     }
     
     func setupNameLabel() {
-        pokemonNameLabel.text = pokemonObj?.species.name.capitalized
+        pokemonNameLabel.text = pokemonDetailsCard?.name.capitalized
         pokemonNameLabel.textAlignment = .center
         pokemonNameLabel.font = .systemFont(ofSize: 30, weight: .bold)
         pokemonNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +67,7 @@ class PokemonVC: UIViewController {
     }
     
     func setupPokeNumberLabel() {
-        let pokemonNumber: Int = pokemonSpeciesObj?.id ?? 9000
+        let pokemonNumber: Int = pokemonDetailsCard?.number ?? 9000
         pokemonNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         pokemonNumberLabel.text = "Pokémon # \(String(pokemonNumber))"
         pokemonNumberLabel.font = .systemFont(ofSize: 22, weight: .semibold)
@@ -78,7 +79,7 @@ class PokemonVC: UIViewController {
     
     func setupPokemonTypesLabel() {
         pokemonTypesLabel.translatesAutoresizingMaskIntoConstraints = false
-        pokemonTypesLabel.text = "Type(s): \(changeTypesToString(typesArr: pokemonObj?.types ?? []))"
+        pokemonTypesLabel.text = "Type(s): \(changeTypesToString(typesArr: pokemonDetailsCard?.types ?? []))"
         pokemonTypesLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 10).isActive = true
         pokemonTypesLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         
