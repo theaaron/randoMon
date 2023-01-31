@@ -16,6 +16,7 @@ class PokemonVC: UIViewController {
     let pokemonImageView = UIImageView()
     let pokemonTypesLabel = UILabel()
     let pokemonNumberLabel = UILabel()
+    let pokemonFlavorTextLabel = UILabel()
     
 
     override func viewDidLoad() {
@@ -34,6 +35,7 @@ class PokemonVC: UIViewController {
             self.setupPokeNumberLabel()
             self.setupPokemonImageView()
             self.setupPokemonTypesLabel()
+            self.setupPokemonFlavorTextLabel()
         }
     }
     
@@ -42,6 +44,7 @@ class PokemonVC: UIViewController {
         view.addSubview(pokemonImageView)
         view.addSubview(pokemonTypesLabel)
         view.addSubview(pokemonNumberLabel)
+        view.addSubview(pokemonFlavorTextLabel)
     }
     
     func setupPokemonImageView() {
@@ -75,15 +78,21 @@ class PokemonVC: UIViewController {
         pokemonNumberLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
     
-
-    
     func setupPokemonTypesLabel() {
         pokemonTypesLabel.translatesAutoresizingMaskIntoConstraints = false
         pokemonTypesLabel.text = "Type(s): \(changeTypesToString(typesArr: pokemonDetailsCard?.types ?? []))"
         pokemonTypesLabel.topAnchor.constraint(equalTo: pokemonNumberLabel.bottomAnchor, constant: 10).isActive = true
-        pokemonTypesLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-        
-        
+        pokemonTypesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+    }
+    
+    func setupPokemonFlavorTextLabel() {
+        pokemonFlavorTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        pokemonFlavorTextLabel.numberOfLines = 0
+        pokemonFlavorTextLabel.text = pokemonDetailsCard?.flavorText.randomElement()?.flavor_text
+        pokemonFlavorTextLabel.textAlignment = .center
+        pokemonFlavorTextLabel.topAnchor.constraint(equalTo: pokemonTypesLabel.bottomAnchor, constant: 20).isActive = true
+        pokemonFlavorTextLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+        pokemonFlavorTextLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
     }
     
     func changeTypesToString(typesArr: [Types]) -> String {
