@@ -200,7 +200,9 @@ struct NetworkingManager {
                                   number: pokemonSpecies?.id ?? 0,
                                   types: pokemonObj?.types ?? [],
                                   frontSprite: pokemonObj?.sprites.front_default ?? "",
-                                  shinyFrontSprite: pokemonObj?.sprites.front_shiny ?? "")
+                                  shinyFrontSprite: pokemonObj?.sprites.front_shiny ?? "", flavorText: pokemonSpecies?.flavor_text_entries.filter({ flavorText in
+            flavorText.language.name == "en"
+        }) ?? [])
     }
     
     
