@@ -42,18 +42,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return UINavigationController(rootViewController: pokeByGenVC)
     }
     
+    func createPokedexVC() -> UINavigationController {
+        let pokedexVC = PokedexVC()
+        let pokedexIcon = UIImage(named: "pokedex-icon")
+        pokedexVC.title = "Pokédex"
+        pokedexVC.tabBarItem = UITabBarItem(title: "Dex", image: pokedexIcon, tag: 2)
+        return UINavigationController(rootViewController: pokedexVC)
+    }
+    
     func createFavPokemonVC() -> UINavigationController {
         let favPokeVC = FavPokemonVC()
         favPokeVC.title = "Favorites"
-        favPokeVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        favPokeVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 3)
         return UINavigationController(rootViewController: favPokeVC)
     }
+    
+
     
     func createTabBar() -> UITabBarController {
         let tabBar = UITabBarController()
         UITabBar.appearance().tintColor = .systemPink
         UITabBar.appearance().backgroundColor = .opaqueSeparator
-        tabBar.viewControllers = [createPokemonByTypeVC(), createPokemonByGenVC(), createFavPokemonVC()]
+        tabBar.viewControllers = [createPokemonByTypeVC(), createPokemonByGenVC(), createPokedexVC(), createFavPokemonVC()]
         
         return tabBar
     }
