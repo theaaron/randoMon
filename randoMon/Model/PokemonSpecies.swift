@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct PokemonSpeciesDict: Codable {
+struct AllPokemonSpecies: Codable {
+    let count: Int
+    let next: String
+    let previous: String?
+    let results: [PokemonSpeciesUrl]
+}
+
+struct PokemonSpeciesUrl: Codable {
     let name: String
     let url: String
 }

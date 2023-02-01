@@ -14,5 +14,6 @@ struct PokemonDetailsCard {
     let frontSprite: String
     let shinyFrontSprite: String
     let flavorText: [FlavorTextEntry]
+    let varieties: [PokemonVariety]
 //    let image: UIImage
 }

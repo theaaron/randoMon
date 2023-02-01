@@ -23,7 +23,7 @@ class PokeTypesCell: UICollectionViewCell {
     }
     
     func set(type: AllPokemonTypes) {
-        typeCellLabel.text = type.name
+        typeCellLabel.text = type.name.capitalized
     }
     
     func setupLabel() {

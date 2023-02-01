@@ -18,5 +18,5 @@ struct GenerationResults: Codable {
 
 struct GenerationInfo: Codable {
     let id: Int
-    let pokemon_species: [PokemonSpeciesDict]
+    let pokemon_species: [PokemonSpeciesUrl]
 }

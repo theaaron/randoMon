@@ -11,7 +11,7 @@ class PokemonByTypeVC: UIViewController {
 
     var typeCollectionView: UICollectionView!
     var allTypes: [AllPokemonTypes] = []
-    let missingNo: Pokemon = Pokemon(name: "missingno", height: 76, weight: 55, sprites: Sprites(front_default: "", front_shiny: ""), types: [], species: PokemonSpeciesDict(name: "missingno", url: ""))
+    let missingNo: Pokemon = Pokemon(name: "missingno", height: 76, weight: 55, sprites: Sprites(front_default: "", front_shiny: ""), types: [], species: PokemonSpeciesUrl(name: "missingno", url: ""))
     
     override func viewDidLoad() {
         super.viewDidLoad()
