@@ -10,16 +10,17 @@ import UIKit
 struct NetworkingManager {
     
     static let shared = NetworkingManager()
+    static var isPaginating = false
     
     static let allPokemon = "https://pokeapi.co/api/v2/pokemon/"
-    let allPokemonSpecies = "https://pokeapi.co/api/v2/pokemon-species"
+    static let allPokemonSpecies = "https://pokeapi.co/api/v2/pokemon-species"
     let typePokemon = "https://pokeapi.co/api/v2/type/"
     let genPokemon = "https://pokeapi.co/api/v2/generation/"
     
     
     //getting list of pokemon species
-    func getAllPokemonSpecies() async -> AllPokemonSpecies? {
-        guard let url = URL(string: allPokemonSpecies) else {
+    func getAllPokemonSpecies(pokeUrl: String) async -> AllPokemonSpecies? {
+        guard let url = URL(string: pokeUrl) else {
             print("error with the url")
             return nil
         }

@@ -18,7 +18,6 @@ class GenerationsCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15))
-        
     }
     
     func setupGenTitle() {

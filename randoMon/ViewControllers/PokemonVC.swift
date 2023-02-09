@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PokemonVC: UIViewController {
     
+    var realm = try! Realm()
     var pokemonObj: Pokemon?
     var pokemonDetailsCard: PokemonDetailsCard?
     var pokemonUrl = ""
@@ -17,7 +19,7 @@ class PokemonVC: UIViewController {
     let pokemonTypesLabel = UILabel()
     let pokemonNumberLabel = UILabel()
     let pokemonFlavorTextLabel = UILabel()
-    
+    let favButton = FavoriteButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,7 @@ class PokemonVC: UIViewController {
             self.setupPokemonImageView()
             self.setupPokemonTypesLabel()
             self.setupPokemonFlavorTextLabel()
+            self.setupFavButton()
         }
     }
     
@@ -45,11 +48,13 @@ class PokemonVC: UIViewController {
         view.addSubview(pokemonTypesLabel)
         view.addSubview(pokemonNumberLabel)
         view.addSubview(pokemonFlavorTextLabel)
+        view.addSubview(favButton)
     }
     
     func setupPokemonImageView() {
         pokemonImageView.translatesAutoresizingMaskIntoConstraints = false
         if let url = URL(string: pokemonDetailsCard?.shinyFrontSprite ?? "") {
+            print(url)
             pokemonImageView.load(url: url)
         }
         
@@ -96,6 +101,25 @@ class PokemonVC: UIViewController {
         pokemonFlavorTextLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
     }
     
+    func setupFavButton() {
+        let favs = realm.objects(FavoritePokemonCard.self)
+        if favs.contains(where: { favPokeCard in
+            favPokeCard.number == pokemonDetailsCard?.number
+        }) {
+            favButton.fillHeart()
+        } else {
+            favButton.unfillHeart()
+        }
+        
+        favButton.translatesAutoresizingMaskIntoConstraints = false
+        favButton.addTarget(self, action: #selector(favButtonClicked), for: .touchUpInside)
+        
+        favButton.topAnchor.constraint(equalTo: pokemonNameLabel.topAnchor).isActive = true
+        favButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        favButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        favButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
     func changeTypesToString(typesArr: [Types]) -> String {
         var typesString = ""
         for types in typesArr {
@@ -106,6 +130,35 @@ class PokemonVC: UIViewController {
             }
         }
         return typesString
+    }
+    
+    @objc func favButtonClicked() {
+        let favPokes = realm.objects(FavoritePokemonCard.self)
+        if favPokes.contains(where: { favPoke in
+            favPoke.number == pokemonDetailsCard?.number
+        }) {
+            if let favPoke = favPokes.first { $0.number == pokemonDetailsCard?.number} {
+                try! realm.write {
+                    realm.delete(favPoke)
+                }
+            }
+            favButton.unfillHeart()
+        } else {
+            let poke = FavoritePokemonCard()
+            poke.number = pokemonDetailsCard?.number ?? 0
+            poke.name = pokemonDetailsCard?.name ?? ""
+            poke.imageUrl = pokemonDetailsCard?.frontSprite ?? ""
+            poke.shinyImageUrl = pokemonDetailsCard?.shinyFrontSprite ?? ""
+            poke.pokeObjUrl = pokemonUrl
+            
+            
+            try! realm.write {
+                realm.add(poke)
+            }
+            favButton.fillHeart()
+        }
+        
+        
     }
 
 }

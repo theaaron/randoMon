@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PokemonByTypeVC: UIViewController {
+
 
     var typeCollectionView: UICollectionView!
     var allTypes: [AllPokemonTypes] = []
@@ -15,6 +17,10 @@ class PokemonByTypeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        let realm = try! Realm(configuration: config)
+        
         view.backgroundColor = .systemBackground
         getAllTypes()
         configCollectionView()

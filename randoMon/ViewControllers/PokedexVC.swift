@@ -10,13 +10,15 @@ import UIKit
 class PokedexVC: UIViewController {
     
     var pokemonDexList: AllPokemonSpecies?
+    var pokeEntries: [PokemonSpeciesUrl] = []
     
     let pokeDexTableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Task {
-            pokemonDexList = await NetworkingManager.shared.getAllPokemonSpecies()
+            pokemonDexList = await NetworkingManager.shared.getAllPokemonSpecies(pokeUrl: NetworkingManager.allPokemonSpecies)
+            pokeEntries.append(contentsOf: pokemonDexList?.results ?? [])
             setupPokedexTableView()
         }
         
@@ -59,7 +61,7 @@ class PokedexVC: UIViewController {
 
 }
 
-extension PokedexVC: UITableViewDelegate, UITableViewDataSource {
+extension PokedexVC: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonDexList?.results.count ?? 20
@@ -67,10 +69,22 @@ extension PokedexVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = pokeDexTableView.dequeueReusableCell(withIdentifier: PokedexTableCell.reuseId, for: indexPath) as! PokedexTableCell
-        guard let poke = pokemonDexList?.results[indexPath.row] else {
-            return cell
-        }
+        let poke = pokeEntries[indexPath.row]
         cell.set(pokeSpeciesUrl: poke)
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (pokeDexTableView.contentSize.height - 10 - scrollView.frame.size.height) {
+            print(pokeEntries)
+            Task {
+                pokemonDexList = await NetworkingManager.shared.getAllPokemonSpecies(pokeUrl: pokemonDexList?.next ?? "")
+                pokeEntries.append(contentsOf: pokemonDexList?.results ?? [])
+                print(pokeEntries)
+                pokeDexTableView.reloadData()
+            }
+            
+        }
     }
 }

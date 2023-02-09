@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		932D10A92988E27D001DFD5E /* PokedexVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932D10A82988E27D001DFD5E /* PokedexVC.swift */; };
 		932D10AB2988E45A001DFD5E /* PokedexTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932D10AA2988E45A001DFD5E /* PokedexTableCell.swift */; };
+		932D11162994056B001DFD5E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 932D11152994056B001DFD5E /* Realm */; };
+		932D11182994056B001DFD5E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 932D11172994056B001DFD5E /* RealmSwift */; };
+		932D111A299405C4001DFD5E /* FavoritePokemonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932D1119299405C4001DFD5E /* FavoritePokemonCard.swift */; };
+		932D111C29945F74001DFD5E /* FavsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932D111B29945F74001DFD5E /* FavsCell.swift */; };
+		932D111E29949507001DFD5E /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932D111D29949507001DFD5E /* FavoriteButton.swift */; };
 		93A8A5AB2974E9B000F8D3BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5AA2974E9B000F8D3BC /* AppDelegate.swift */; };
 		93A8A5AD2974E9B000F8D3BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A8A5AC2974E9B000F8D3BC /* SceneDelegate.swift */; };
 		93A8A5B42974E9B000F8D3BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93A8A5B32974E9B000F8D3BC /* Assets.xcassets */; };
@@ -32,6 +37,9 @@
 /* Begin PBXFileReference section */
 		932D10A82988E27D001DFD5E /* PokedexVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexVC.swift; sourceTree = "<group>"; };
 		932D10AA2988E45A001DFD5E /* PokedexTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexTableCell.swift; sourceTree = "<group>"; };
+		932D1119299405C4001DFD5E /* FavoritePokemonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemonCard.swift; sourceTree = "<group>"; };
+		932D111B29945F74001DFD5E /* FavsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsCell.swift; sourceTree = "<group>"; };
+		932D111D29949507001DFD5E /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		93A8A5A72974E9B000F8D3BC /* randoMon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = randoMon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A8A5AA2974E9B000F8D3BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93A8A5AC2974E9B000F8D3BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932D11182994056B001DFD5E /* RealmSwift in Frameworks */,
+				932D11162994056B001DFD5E /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				93A8A5BE2974F78700F8D3BC /* PokemonByTypeVC.swift */,
-				93A8A5C02974F79800F8D3BC /* PokemonByGenVC.swift */,
 				93A8A5C22974F7B000F8D3BC /* FavPokemonVC.swift */,
+				93A8A5C02974F79800F8D3BC /* PokemonByGenVC.swift */,
 				93A8A5CE2974FB2600F8D3BC /* PokemonVC.swift */,
 				932D10A82988E27D001DFD5E /* PokedexVC.swift */,
 			);
@@ -119,6 +129,7 @@
 				93A8A5D62977AC6D00F8D3BC /* PokemonSpecies.swift */,
 				93F8296B297C831B00CD88D4 /* ListOfGenerations.swift */,
 				93D7C119298391A0001B892A /* PokemonDetailsCard.swift */,
+				932D1119299405C4001DFD5E /* FavoritePokemonCard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,8 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				93A8A5D1297505CC00F8D3BC /* PokeTypesCell.swift */,
+				932D111B29945F74001DFD5E /* FavsCell.swift */,
 				93F8296D297C869700CD88D4 /* GenerationsCell.swift */,
 				932D10AA2988E45A001DFD5E /* PokedexTableCell.swift */,
+				932D111D29949507001DFD5E /* FavoriteButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -157,6 +170,10 @@
 			dependencies = (
 			);
 			name = randoMon;
+			packageProductDependencies = (
+				932D11152994056B001DFD5E /* Realm */,
+				932D11172994056B001DFD5E /* RealmSwift */,
+			);
 			productName = randoMon;
 			productReference = 93A8A5A72974E9B000F8D3BC /* randoMon.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +202,9 @@
 				Base,
 			);
 			mainGroup = 93A8A59E2974E9AF00F8D3BC;
+			packageReferences = (
+				932D11142994056B001DFD5E /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 93A8A5A82974E9B000F8D3BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,9 +237,11 @@
 				93A8A5D72977AC6D00F8D3BC /* PokemonSpecies.swift in Sources */,
 				93A8A5AB2974E9B000F8D3BC /* AppDelegate.swift in Sources */,
 				93A8A5D52975F2A900F8D3BC /* UIImageViewExt.swift in Sources */,
+				932D111A299405C4001DFD5E /* FavoritePokemonCard.swift in Sources */,
 				932D10A92988E27D001DFD5E /* PokedexVC.swift in Sources */,
 				93A8A5AD2974E9B000F8D3BC /* SceneDelegate.swift in Sources */,
 				93A8A5CA2974F96400F8D3BC /* PokemonByTypeDict.swift in Sources */,
+				932D111C29945F74001DFD5E /* FavsCell.swift in Sources */,
 				93A8A5D2297505CC00F8D3BC /* PokeTypesCell.swift in Sources */,
 				93A8A5C32974F7B000F8D3BC /* FavPokemonVC.swift in Sources */,
 				93F8296E297C869700CD88D4 /* GenerationsCell.swift in Sources */,
@@ -227,6 +249,7 @@
 				932D10AB2988E45A001DFD5E /* PokedexTableCell.swift in Sources */,
 				93D7C11A298391A0001B892A /* PokemonDetailsCard.swift in Sources */,
 				93A8A5C12974F79800F8D3BC /* PokemonByGenVC.swift in Sources */,
+				932D111E29949507001DFD5E /* FavoriteButton.swift in Sources */,
 				93A8A5C62974F8F600F8D3BC /* Pokemon.swift in Sources */,
 				93F8296C297C831B00CD88D4 /* ListOfGenerations.swift in Sources */,
 			);
@@ -436,6 +459,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		932D11142994056B001DFD5E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.35.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		932D11152994056B001DFD5E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 932D11142994056B001DFD5E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		932D11172994056B001DFD5E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 932D11142994056B001DFD5E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93A8A59F2974E9B000F8D3BC /* Project object */;
 }
