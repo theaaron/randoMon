@@ -14,21 +14,9 @@ class FavPokemonVC: UIViewController {
     
     var favsCollectionView: UICollectionView!
     
-//    func deleteAll() {
-//        do {
-//            try! realm.write({
-//                realm.deleteAll()
-//            })
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupFavsCollectionView()
-        DispatchQueue.main.async {
-            self.favsCollectionView.reloadData()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,18 +24,7 @@ class FavPokemonVC: UIViewController {
         favsCollectionView.reloadData()
     }
     
-    func addToFavs() {
-        let poke = FavoritePokemonCard()
-        poke.name = "Charmander"
-        poke.imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/4.png"
-        do {
-            try realm.write({
-                realm.add(poke)
-            })
-        } catch {
-            print("error")
-        }
-    }
+
     
     func setupFavsCollectionView() {
         favsCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeTwoColumnFlowLayout())
@@ -72,19 +49,6 @@ class FavPokemonVC: UIViewController {
         
         return flowLayout
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -105,8 +69,6 @@ extension FavPokemonVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let pokes = realm.objects(FavoritePokemonCard.self)
         destVC.pokemonUrl = pokes[indexPath.row].pokeObjUrl
         navigationController?.pushViewController(destVC, animated: true)
-        
-        
     }
     
     
