@@ -125,7 +125,7 @@ struct NetworkingManager {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let allGens = try JSONDecoder().decode(ListOfGenerations.self, from: data)
-            return allGens.results
+            return allGens.generationsArray
         } catch {
             print("could not decode data for generation list")
             return []
@@ -141,8 +141,10 @@ struct NetworkingManager {
         }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            let genInfo = try JSONDecoder().decode(GenerationInfo.self, from: data)
-            let genPokes = genInfo.pokemon_species
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let genInfo = try decoder.decode(GenerationPokemon.self, from: data)
+            let genPokes = genInfo.pokemonSpecies
             return genPokes
         } catch {
             return []

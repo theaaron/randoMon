@@ -8,15 +8,26 @@
 import Foundation
 
 struct ListOfGenerations: Codable {
-    let results: [GenerationResults]
+    let generationsArray: [GenerationResults]
+    
+    enum CodingKeys: String, CodingKey {
+        case generationsArray = "results"
+    }
+    
+    
 }
 
 struct GenerationResults: Codable {
-    let name: String
-    let url: String
+    let generationNumber: String
+    let generationUrl: String
+    
+    enum CodingKeys: String, CodingKey {
+        case generationNumber = "name"
+        case generationUrl = "url"
+    }
 }
 
-struct GenerationInfo: Codable {
+struct GenerationPokemon: Codable {
     let id: Int
-    let pokemon_species: [PokemonSpeciesUrl]
+    let pokemonSpecies: [PokemonSpeciesUrl]
 }
